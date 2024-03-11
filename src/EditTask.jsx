@@ -10,8 +10,7 @@ const EditTask = ({ taskData, onEdit, onCancel, form }) => {
     form.setFieldsValue(taskData);
   }, [form, taskData]);
 
-  const handleEdit = (e) => {
-    e.preventDefault();
+  const handleEdit = () => {
     form
       .validateFields()
       .then((values) => {

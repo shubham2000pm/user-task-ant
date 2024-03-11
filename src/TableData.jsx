@@ -23,6 +23,10 @@ const TableData = () => {
     messageApi.success(`Task ID ${taskId} Deleted Successfully`);
   };
 
+  useEffect(() => {
+    setFilteredData(data);
+  }, [data]);
+
   const [currentPage, setCurrentPage] = useState({
     page: 1,
     pageSize: 10,
@@ -59,20 +63,12 @@ const TableData = () => {
       )
     );
 
-    setFilteredData((prevData) =>
-      prevData.map((task) =>
-        task.id === selectedTask.id ? { ...task, ...editedData } : task
-      )
-    );
-
     setEditTaskVisible(false);
   };
 
   const handleDelete = async (taskId) => {
     setData((prevData) => prevData.filter((task) => task.id !== taskId));
-    setFilteredData((prevData) =>
-      prevData.filter((task) => task.id !== taskId)
-    );
+
     success(taskId);
   };
 
